@@ -31,3 +31,76 @@ cacheSolve <- function(x, ...) {#This function computes the inverse of the speci
     x$setinv(m)
     m
 }
+
+
+#validation
+	##matrices definition
+	#> one_matrix<-rbind(c(7,2,1),c(0,3,-1),c(-3,4,-2))
+	#> two_matrix<-rbind(c(1,2,3),c(0,1,4),c(5,6,0))
+	#> three_matrix<-rbind(c(1,3,1),c(1,1,2),c(2,3,4))
+
+	##calling the first function (defined a, b, and c, respectively)
+	#> a<-makeCacheMatrix(one_matrix)
+	#> b<-makeCacheMatrix(two_matrix)
+	#> c<-makeCacheMatrix(three_matrix)
+	
+	##calling the second function
+	#> cacheSolve(a)
+	#     [,1] [,2] [,3]
+	#[1,]   -2    8   -5
+	#[2,]    3  -11    7
+	#[3,]    9  -34   21
+
+	##comparing to the solve() output, in order to check if the inverse matrix is correct
+	#> solve(one_matrix)
+	#     [,1] [,2] [,3]
+	#[1,]   -2    8   -5
+	#[2,]    3  -11    7
+	#[3,]    9  -34   21
+
+	##checking if the "cache" message prints
+	#> cacheSolve(a)
+	#getting cached data
+	#     [,1] [,2] [,3]
+	#[1,]   -2    8   -5
+	#[2,]    3  -11    7
+	#[3,]    9  -34   21
+
+	##same procedure, for matrices two and three
+	#> cacheSolve(b)
+	#     [,1] [,2] [,3]
+	#[1,]  -24   18    5
+	#[2,]   20  -15   -4
+	#[3,]   -5    4    1
+	
+	#> solve(two_matrix)
+	#     [,1] [,2] [,3]
+	#[1,]  -24   18    5
+	#[2,]   20  -15   -4
+	#[3,]   -5    4    1
+	
+	#> cacheSolve(b)
+	#getting cached data
+	#     [,1] [,2] [,3]
+	#[1,]  -24   18    5
+	#[2,]   20  -15   -4
+	#[3,]   -5    4    1
+	
+	#> cacheSolve(c)
+	#     [,1] [,2] [,3]
+	#[1,]    2    9   -5
+	#[2,]    0   -2    1
+	#[3,]   -1   -3    2
+	
+	#> solve(three_matrix)
+	#     [,1] [,2] [,3]
+	#[1,]    2    9   -5
+	#[2,]    0   -2    1
+	#[3,]   -1   -3    2
+	
+	#> cacheSolve(c)
+	#getting cached data
+	#     [,1] [,2] [,3]
+	#[1,]    2    9   -5
+	#[2,]    0   -2    1
+	#[3,]   -1   -3    2
