@@ -3,16 +3,17 @@
 
 ## Write a short comment describing this function
 
-makeCacheMatrix <- function(x = matrix()) { #This function creates a special "matrix" object that can cache its inverse
-    m <- NULL
+#The following function creates a special "matrix" object that can cache its inverse
+makeCacheMatrix <- function(x = matrix()) { 
+    m <- NULL #assigns NULL to m
     set <- function(y) {
-        x <<- y
-        m <<- NULL
+        x <<- y #assigns the input to the function to x, in the parent environment
+        m <<- NULL #assigns NULL to m, in the parent environment
     }
-    get <- function() x
-    setinv <- function(inv) m <<- inv
-    getinv <- function() m
-    list(set = set, get = get,
+    get <- function() x #returns x, from the parent environment
+    setinv <- function(inv) m <<- inv #assigns inv to m, in the parent environment
+    getinv <- function() m #getter for m
+    list(set = set, get = get, #creates a list, and names all its elements
          setinv = setinv,
          getinv = getinv)
 }
@@ -21,13 +22,13 @@ makeCacheMatrix <- function(x = matrix()) { #This function creates a special "ma
 ## Write a short comment describing this function
 
 cacheSolve <- function(x, ...) {#This function computes the inverse of the special "matrix" returned by makeCacheMatrix, if the inverse has not been calculated. Otherwise, it retrieves the inverse from the cache.
-    m <- x$getinv()
-    if(!is.null(m)) {
+    m <- x$getinv() #assigns getinv, from x in the former function, to m
+    if(!is.null(m)) { #if m is not NULL, it means that the inverse has been calculated before. Therefore, the message getting cached data
         message("getting cached data")
         return(m)
     }
-    data <- x$get()
-    m <- solve(data, ...)
+    data <- x$get() #receives x, from the previous function
+    m <- solve(data, ...)#calculates the inverse matrix with the data variable, defined in the previous line
     x$setinv(m)
     m
 }
